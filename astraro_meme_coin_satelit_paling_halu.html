@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRARO ($ASTRO) - Meme Coin Sinyal Starlink Paling Halu!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk & Fredoka untuk nuansa luar angkasa yang lucu -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tone.js untuk Efek Suara Meme & Luar Angkasa -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    
+    <script>
+        // Konfigurasi Kustom Tailwind CSS
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        display: ['"Fredoka"', 'sans-serif'],
+                    },
+                    colors: {
+                        space: {
+                            950: '#070A19',
+                            900: '#0D1330',
+                            800: '#16204D',
+                            700: '#213070',
+                        },
+                        neon: {
+                            cyan: '#00F5D4',
+                            yellow: '#FEE440',
+                            pink: '#F15BB5',
+                            purple: '#9B5DE5',
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 18s linear infinite',
+                        'float': 'float 3.5s ease-in-out infinite',
+                        'orbit': 'orbit 6s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-14px) rotate(2deg)' },
+                        },
+                        orbit: {
+                            '0%': { transform: 'rotate(0deg) translateX(115px) rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg) translateX(115px) rotate(-360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #070A19;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* Latar Belakang Bintang Berkelip */
+        .stars-bg {
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #00F5D4, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #FEE440, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 80px, #F15BB5, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 260px 260px;
+        }
+
+        /* Efek Kartu Komik Meme */
+        .meme-card {
+            background: rgba(13, 19, 48, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(0, 245, 212, 0.25);
+            box-shadow: 0 8px 0px rgba(0, 245, 212, 0.15);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .meme-card:hover {
+            transform: translateY(-6px);
+            border-color: #00F5D4;
+            box-shadow: 0 12px 0px rgba(0, 245, 212, 0.35);
+        }
+
+        /* Tombol Gaya 3D Pop */
+        .btn-astro {
+            box-shadow: 0 5px 0px #0B7A6B;
+            transition: all 0.15s ease;
+        }
+        .btn-astro:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0px #0B7A6B;
+        }
+
+        .btn-yellow {
+            box-shadow: 0 5px 0px #A69108;
+            transition: all 0.15s ease;
+        }
+        .btn-yellow:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0px #A69108;
+        }
+
+        /* Gelombang Sinyal WiFi Satelit */
+        @keyframes pulseRing {
+            0% { transform: scale(0.7); opacity: 0.9; }
+            100% { transform: scale(2.1); opacity: 0; }
+        }
+        .signal-ring {
+            animation: pulseRing 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        }
+        .signal-ring-delay-1 { animation-delay: 0.7s; }
+        .signal-ring-delay-2 { animation-delay: 1.4s; }
+
+        /* Transisi Keluar Layar Intro */
+        #intro-overlay {
+            transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #intro-overlay.intro-exit {
+            opacity: 0;
+            transform: scale(1.15) translateY(-40px);
+            pointer-events: none;
+        }
+
+        /* Meteor Melintas */
+        @keyframes shootingStar {
+            0% { transform: translateX(-100px) translateY(-100px) rotate(35deg); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(110vw) translateY(80vh) rotate(35deg); opacity: 0; }
+        }
+        .meteor {
+            position: fixed;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(0,245,212,0), #00F5D4);
+            pointer-events: none;
+            z-index: 1;
+            animation: shootingStar 5s linear infinite;
+        }
+
+        /* Running Text Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Animasi Partikel & Gelombang Klik Tombol */
+        @keyframes clickBurst {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2) rotate(var(--rot));
+                opacity: 0;
+            }
+        }
+
+        .click-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.25rem;
+            animation: clickBurst 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(0.2);
+                opacity: 0.85;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .click-ripple {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 9999px;
+            border: 3px solid #00F5D4;
+            pointer-events: none;
+            z-index: 9998;
+            animation: rippleExpand 0.5s ease-out forwards;
+        }
+
+        /* Animasi Goyang Cepat saat Satelit Diklik */
+        @keyframes satPoke {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.12) rotate(-8deg); }
+            50% { transform: scale(0.95) rotate(8deg); }
+            75% { transform: scale(1.06) rotate(-4deg); }
+        }
+        .animate-sat-poke {
+            animation: satPoke 0.45s ease-in-out;
+        }
+    </style>
+</head>
+<body class="stars-bg relative selection:bg-neon-pink selection:text-white">
+
+    <!-- =====================================================================
+         1. INTRO ANIMATION UI (DESAIN KUSTOM SATELIT STARLINK LUCU - ASTRARO)
+         Muncul pertama kali saat website dibuka!
+    ====================================================================== -->
+    <div id="intro-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-space-950 stars-bg p-6 text-center overflow-hidden">
+        <!-- Cahaya Ambient di Belakang -->
+        <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-neon-purple/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute w-64 h-64 bg-neon-cyan/20 rounded-full blur-3xl -bottom-10 -right-10"></div>
+
+        <!-- Kontainer Utama Animasi Satelit Astraro -->
+        <div class="relative flex flex-col items-center justify-center max-w-md w-full z-10">
+            
+            <!-- Gelembung Dialog Lucu -->
+            <div id="intro-speech" class="mb-4 px-5 py-2.5 bg-white text-space-950 font-display font-bold text-sm sm:text-base rounded-2xl rounded-bl-none shadow-lg animate-bounce border-2 border-neon-cyan">
+                "Beep Boop! Mencari sinyal cuan dari Mars... 📡💸"
+            </div>
+
+            <!-- Maskot Custom SVG: ASTRARO THE DERPY STARLINK SATELLITE -->
+            <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center animate-float my-2">
+                <!-- Gelombang Sinyal Starlink Pancaran -->
+                <div class="absolute w-28 h-28 rounded-full border-4 border-neon-cyan/60 signal-ring"></div>
+                <div class="absolute w-28 h-28 rounded-full border-4 border-neon-yellow/60 signal-ring signal-ring-delay-1"></div>
+                <div class="absolute w-28 h-28 rounded-full border-4 border-neon-pink/60 signal-ring signal-ring-delay-2"></div>
+
+                <!-- Koin Mini Mengorbit -->
+                <div class="absolute w-10 h-10 bg-neon-yellow rounded-full border-2 border-space-950 flex items-center justify-center font-display font-bold text-space-950 shadow-md animate-orbit z-20">
+                    $A
+                </div>
+
+                <!-- SVG Karakter Astraro Buatan Sendiri -->
+                <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,245,212,0.4)] z-10" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Sayap Panel Surya Kiri -->
+                    <g transform="rotate(-12 150 150)">
+                        <rect x="12" y="112" width="78" height="68" rx="10" fill="#1E293B" stroke="#00F5D4" stroke-width="4"/>
+                        <!-- Garis Grid Panel Surya -->
+                        <line x1="38" y1="112" x2="38" y2="180" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <line x1="64" y1="112" x2="64" y2="180" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <line x1="12" y1="135" x2="90" y2="135" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <line x1="12" y1="158" x2="90" y2="158" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <!-- Batang Penghubung -->
+                        <rect x="90" y="140" width="16" height="12" fill="#94A3B8"/>
+                    </g>
+
+                    <!-- Sayap Panel Surya Kanan -->
+                    <g transform="rotate(-12 150 150)">
+                        <rect x="210" y="112" width="78" height="68" rx="10" fill="#1E293B" stroke="#00F5D4" stroke-width="4"/>
+                        <!-- Garis Grid Panel Surya -->
+                        <line x1="236" y1="112" x2="236" y2="180" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <line x1="262" y1="112" x2="262" y2="180" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <line x1="210" y1="135" x2="288" y2="135" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <line x1="210" y1="158" x2="288" y2="158" stroke="#00F5D4" stroke-width="2" stroke-opacity="0.6"/>
+                        <!-- Batang Penghubung -->
+                        <rect x="194" y="140" width="16" height="12" fill="#94A3B8"/>
+                    </g>
+
+                    <!-- Antena Atas Lucu -->
+                    <line x1="150" y1="88" x2="150" y2="45" stroke="#E2E8F0" stroke-width="6" stroke-linecap="round"/>
+                    <circle cx="150" cy="38" r="11" fill="#F15BB5" stroke="#FFFFFF" stroke-width="3">
+                        <animate attributeName="fill" values="#F15BB5;#FEE440;#00F5D4;#F15BB5" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+
+                    <!-- Badan Utama Satelit (Bentuk Router Starlink Gemoy) -->
+                    <rect x="102" y="88" width="96" height="112" rx="26" fill="#F8FAFC" stroke="#0F172A" stroke-width="5"/>
+                    <!-- Aksen Visor Kaca Depan -->
+                    <rect x="114" y="106" width="72" height="54" rx="16" fill="#0F172A"/>
+
+                    <!-- Mata Meme Lucu (Derpy Eyes) -->
+                    <!-- Mata Kiri Besar -->
+                    <circle cx="134" cy="130" r="12" fill="#FFFFFF"/>
+                    <circle cx="137" cy="128" r="5" fill="#0F172A"/>
+                    <circle cx="139" cy="126" r="2" fill="#FFFFFF"/>
+                    
+                    <!-- Mata Kanan Sedikit Juling Lucu -->
+                    <circle cx="166" cy="133" r="10" fill="#FFFFFF"/>
+                    <circle cx="163" cy="135" r="4.5" fill="#0F172A"/>
+                    <circle cx="165" cy="133" r="1.5" fill="#FFFFFF"/>
+
+                    <!-- Pipi Merona -->
+                    <ellipse cx="122" cy="146" rx="6" ry="3.5" fill="#F15BB5" opacity="0.8"/>
+                    <ellipse cx="178" cy="146" rx="6" ry="3.5" fill="#F15BB5" opacity="0.8"/>
+
+                    <!-- Mulut Senyum Lebar Meme -->
+                    <path d="M 141 144 Q 150 156 159 144" stroke="#00F5D4" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+                    <!-- Logo Sinyal di Perut Satelit -->
+                    <path d="M 138 176 Q 150 166 162 176" stroke="#9B5DE5" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 143 183 Q 150 177 157 183" stroke="#9B5DE5" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <circle cx="150" cy="189" r="2.5" fill="#F15BB5"/>
+
+                    <!-- Api Roket Pendorong di Bawah -->
+                    <path d="M 132 200 L 168 200 L 160 214 L 140 214 Z" fill="#475569"/>
+                    <path d="M 142 214 Q 150 248 158 214 Z" fill="#FEE440">
+                        <animate attributeName="d" values="M 142 214 Q 150 248 158 214 Z; M 142 214 Q 150 232 158 214 Z; M 142 214 Q 150 252 158 214 Z" dur="0.3s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M 145 214 Q 150 234 155 214 Z" fill="#F15BB5"/>
+                </svg>
+            </div>
+
+            <!-- Judul Brand Astraro -->
+            <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-white to-neon-yellow mt-2">
+                ASTRARO
+            </h1>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1 mb-5 font-medium">
+                Satelit Starlink Paling Nyasar di Galaksi Web3 🛰️
+            </p>
+
+            <!-- Progress Bar Kalibrasi Sinyal -->
+            <div class="w-full max-w-xs bg-space-800 rounded-full h-4 p-1 border border-neon-cyan/40 mb-2 overflow-hidden">
+                <div id="signal-bar" class="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-yellow h-full rounded-full transition-all duration-200" style="width: 15%"></div>
+            </div>
+            <p id="signal-status" class="text-xs text-neon-cyan font-mono mb-6">
+                Menghubungkan ke Orbit Low-Budget... 15%
+            </p>
+
+            <!-- Tombol Masuk Orbit (Muncul / Aktif setelah loading atau bisa diklik langsung) -->
+            <button id="enter-orbit-btn" onclick="enterWebsite(event)" class="px-8 py-3.5 bg-neon-cyan text-space-950 font-display font-bold text-lg rounded-2xl btn-astro hover:bg-white cursor-pointer flex items-center gap-2 group">
+                <span>LUNCURKAN KE ORBIT</span>
+                <i class="fa-solid fa-rocket group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         2. KONTEN UTAMA WEBSITE ASTRARO ($ASTRO)
+    ====================================================================== -->
+    <div id="main-content" class="relative z-10">
+        
+        <!-- Efek Meteor Melintas -->
+        <div class="meteor" style="top: 10%; animation-delay: 0s;"></div>
+        <div class="meteor" style="top: 45%; animation-delay: 2.5s;"></div>
+
+        <!-- NAVBAR -->
+        <header class="sticky top-0 z-40 bg-space-950/80 backdrop-blur-md border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-neon-purple to-neon-cyan p-0.5 shadow-lg group-hover:rotate-12 transition-transform">
+                        <div class="w-full h-full bg-space-950 rounded-[14px] flex items-center justify-center text-xl">
+                            🛰️
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-2xl tracking-wide text-white">ASTRARO</span>
+                        <span class="ml-1.5 text-xs font-bold px-2 py-0.5 rounded-full bg-neon-yellow text-space-950">$ASTRO</span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+                    <a href="#tentang" class="hover:text-neon-cyan transition-colors">Lore Halu</a>
+                    <a href="#tokenomics" class="hover:text-neon-cyan transition-colors">Tokenomics</a>
+                    <a href="#sinyal-game" class="hover:text-neon-cyan transition-colors">Cek Sinyal Cuan</a>
+                    <a href="#roadmap" class="hover:text-neon-cyan transition-colors">Peta Orbit</a>
+                </nav>
+
+                <!-- Tombol Aksi & Replay Intro -->
+                <div class="flex items-center gap-3">
+                    <!-- Tombol Mute / Unmute Suara -->
+                    <button id="sound-toggle-btn" onclick="toggleSound(event)" title="Aktifkan/Matikan Suara" class="p-2.5 rounded-xl bg-space-800 hover:bg-space-700 text-neon-yellow border border-neon-yellow/30 transition-all text-sm flex items-center gap-1.5 cursor-pointer">
+                        <i id="sound-icon" class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <button onclick="replayIntro(event)" title="Putar Ulang Animasi Astraro" class="p-2.5 rounded-xl bg-space-800 hover:bg-space-700 text-neon-cyan border border-neon-cyan/30 transition-all text-sm flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span class="hidden sm:inline font-medium">Intro</span>
+                    </button>
+                    <a href="#beli" onclick="triggerBtnEffect(event, 'laser')" class="px-5 py-2.5 bg-neon-yellow text-space-950 font-display font-bold text-sm rounded-xl btn-yellow hover:bg-white transition-colors">
+                        Beli $ASTRO 🚀
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Kolom Kiri: Copywriting Lucu -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-space-800 border border-neon-cyan/40 text-neon-cyan text-xs sm:text-sm font-semibold mb-6">
+                            <span class="w-2.5 h-2.5 rounded-full bg-neon-cyan animate-ping"></span>
+                            <span>100% Bebas FUD, 0% Utilitas, 1000% Sinyal WiFi Tetangga</span>
+                        </div>
+
+                        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                            Sinyal Lemot? <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-yellow to-neon-pink">
+                                ASTRARO
+                            </span> Solusinya!
+                        </h1>
+
+                        <p class="text-slate-300 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                            Perkenalkan <strong>Astraro ($ASTRO)</strong>, satelit Starlink parodi pertama yang tersesat di orbit blockchain. Saat koin lain turun ke bumi, Astraro malah nyangkut di awan sambil memancarkan sinyal cuan gratis!
+                        </p>
+
+                        <!-- Contract Address Copy Box -->
+                        <div class="max-w-xl mx-auto lg:mx-0 mb-8">
+                            <label class="block text-xs text-slate-400 uppercase tracking-wider mb-2 font-semibold">
+                                Contract Address (Solana / Halu-Chain):
+                            </label>
+                            <div class="flex items-center justify-between bg-space-900 border-2 border-neon-purple/50 rounded-2xl p-2 pl-4 shadow-inner">
+                                <code id="ca-text" class="text-xs sm:text-sm text-neon-cyan truncate font-mono select-all">
+                                    ASTRo777StarlinkNyasarDiMars999xToTheMoon
+                                </code>
+                                <button onclick="copyCA(event)" class="ml-3 px-4 py-2 bg-neon-purple hover:bg-neon-pink text-white font-bold text-xs sm:text-sm rounded-xl transition-colors flex items-center gap-2 shrink-0 cursor-pointer">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span id="copy-btn-text">Salin CA</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tombol CTA -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                            <a href="#beli" onclick="triggerBtnEffect(event, 'coin')" class="px-8 py-4 bg-neon-cyan text-space-950 font-display font-bold text-lg rounded-2xl btn-astro hover:bg-white flex items-center gap-2">
+                                <span>Serok $ASTRO Sekarang</span>
+                                <i class="fa-solid fa-satellite-dish"></i>
+                            </a>
+                            <a href="#sinyal-game" onclick="triggerBtnEffect(event, 'beep')" class="px-7 py-4 bg-space-800 text-white border-2 border-white/20 hover:border-neon-yellow font-display font-bold text-lg rounded-2xl transition-all flex items-center gap-2">
+                                <span>Tes Sinyal Hoki</span>
+                                <span>📡</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Maskot Interaktif Hero -->
+                    <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+                        <!-- Lingkaran Orbit Dekoratif -->
+                        <div class="absolute w-72 h-72 sm:w-96 sm:h-96 border-2 border-dashed border-neon-cyan/30 rounded-full animate-spin-slow"></div>
+                        <div class="absolute w-56 h-56 sm:w-72 sm:h-72 border border-neon-pink/30 rounded-full"></div>
+
+                        <!-- Kartu Maskot Hero yang Bisa Diklik -->
+                        <div id="hero-sat-container" onclick="pokeAstraro(event)" class="relative cursor-pointer group select-none text-center">
+                            <div id="hero-bubble" class="mb-3 px-4 py-2 bg-neon-yellow text-space-950 font-display font-bold text-sm rounded-2xl shadow-lg transform -rotate-2 group-hover:scale-105 transition-transform">
+                                Klik satelitnya buat boost sinyal! ⚡
+                            </div>
+                            
+                            <div id="hero-sat-visual" class="w-64 h-64 sm:w-80 sm:h-80 mx-auto animate-float">
+                                <!-- Ilustrasi SVG Satelit Astraro Versi Hero dengan Kacamata Thug Life / Meme -->
+                                <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-[0_20px_35px_rgba(155,93,229,0.5)]" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Sayap Panel Surya -->
+                                    <g transform="rotate(8 150 150)">
+                                        <rect x="10" y="115" width="80" height="64" rx="10" fill="#0F172A" stroke="#FEE440" stroke-width="4"/>
+                                        <line x1="36" y1="115" x2="36" y2="179" stroke="#FEE440" stroke-width="2"/>
+                                        <line x1="63" y1="115" x2="63" y2="179" stroke="#FEE440" stroke-width="2"/>
+                                        <line x1="10" y1="147" x2="90" y2="147" stroke="#FEE440" stroke-width="2"/>
+                                        <rect x="90" y="141" width="15" height="12" fill="#CBD5E1"/>
+
+                                        <rect x="210" y="115" width="80" height="64" rx="10" fill="#0F172A" stroke="#FEE440" stroke-width="4"/>
+                                        <line x1="236" y1="115" x2="236" y2="179" stroke="#FEE440" stroke-width="2"/>
+                                        <line x1="263" y1="115" x2="263" y2="179" stroke="#FEE440" stroke-width="2"/>
+                                        <line x1="210" y1="147" x2="290" y2="147" stroke="#FEE440" stroke-width="2"/>
+                                        <rect x="195" y="141" width="15" height="12" fill="#CBD5E1"/>
+                                    </g>
+
+                                    <!-- Antena -->
+                                    <line x1="150" y1="85" x2="150" y2="38" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+                                    <circle cx="150" cy="32" r="12" fill="#00F5D4" stroke="#0F172A" stroke-width="3"/>
+
+                                    <!-- Badan Satelit -->
+                                    <rect x="100" y="85" width="100" height="115" rx="28" fill="#FFFFFF" stroke="#0F172A" stroke-width="5"/>
+                                    <rect x="112" y="102" width="76" height="56" rx="16" fill="#0B0F29"/>
+
+                                    <!-- Kacamata Hitam Pixel Meme -->
+                                    <rect x="118" y="118" width="28" height="14" rx="2" fill="#00F5D4"/>
+                                    <rect x="154" y="118" width="28" height="14" rx="2" fill="#00F5D4"/>
+                                    <rect x="146" y="121" width="8" height="4" fill="#00F5D4"/>
+                                    <!-- Kilauan Kacamata -->
+                                    <line x1="123" y1="121" x2="130" y2="128" stroke="#FFFFFF" stroke-width="2.5"/>
+                                    <line x1="159" y1="121" x2="166" y2="128" stroke="#FFFFFF" stroke-width="2.5"/>
+
+                                    <!-- Senyum Smirk -->
+                                    <path d="M 138 145 Q 152 153 164 141" stroke="#FEE440" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+                                    <!-- Badge $ASTRO -->
+                                    <rect x="122" y="168" width="56" height="20" rx="8" fill="#9B5DE5"/>
+                                    <text x="150" y="182" font-family="sans-serif" font-weight="bold" font-size="11" fill="#FFFFFF" text-anchor="middle">$ASTRO</text>
+
+                                    <!-- Thruster -->
+                                    <path d="M 135 200 L 165 200 L 158 215 L 142 215 Z" fill="#334155"/>
+                                    <path d="M 142 215 Q 150 255 158 215 Z" fill="#00F5D4">
+                                        <animate attributeName="d" values="M 142 215 Q 150 255 158 215 Z; M 142 215 Q 150 235 158 215 Z; M 142 215 Q 150 260 158 215 Z" dur="0.25s" repeatCount="indefinite"/>
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- RUNNING MARQUEE TICKER -->
+        <div class="bg-neon-yellow text-space-950 py-3 border-y-4 border-space-950 overflow-hidden font-display font-bold text-base sm:text-lg">
+            <div class="animate-marquee flex items-center gap-8">
+                <span>🛰️ $ASTRO TO THE MARS</span>
+                <span>•</span>
+                <span>📡 SINYAL FULL BAR 5G GALAKSI</span>
+                <span>•</span>
+                <span>💎 DIAMOND HANDS ONLY</span>
+                <span>•</span>
+                <span>🐕 BUKAN KOIN ANJING, INI SATELIT NYASAR</span>
+                <span>•</span>
+                <span>🚀 NO RUGPULL, CUMA KEHABISAN KUOTA</span>
+                <span>•</span>
+                <span>🛰️ $ASTRO TO THE MARS</span>
+                <span>•</span>
+                <span>📡 SINYAL FULL BAR 5G GALAKSI</span>
+                <span>•</span>
+                <span>💎 DIAMOND HANDS ONLY</span>
+                <span>•</span>
+                <span>🐕 BUKAN KOIN ANJING, INI SATELIT NYASAR</span>
+                <span>•</span>
+                <span>🚀 NO RUGPULL, CUMA KEHABISAN KUOTA</span>
+            </div>
+        </div>
+
+        <!-- SECTION LORE / TENTANG ASTRARO -->
+        <section id="tentang" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4">
+                    Kenapa Harus <span class="text-neon-cyan">ASTRARO?</span>
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg">
+                    Kisah nyata (katanya) tentang satelit Starlink ke-69420 yang salah belok pas mau kirim internet ke pedalaman Mars.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="meme-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-neon-cyan/20 text-neon-cyan flex items-center justify-center text-3xl mb-6 border border-neon-cyan/40">
+                        📡
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3 text-white">Sinyal Anti Nyangkut</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Bosan dengan sinyal merah di portofolio? Astraro memancarkan gelombang hijau langsung dari termosfer agar chart kamu selalu tegak berdiri!
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="meme-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-neon-yellow/20 text-neon-yellow flex items-center justify-center text-3xl mb-6 border border-neon-yellow/40">
+                        🛸
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3 text-white">Ditenagai Panel Halu</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Sayap panel surya Astraro menyerap energi dari cuitan para influencer kripto dan mengubahnya menjadi tenaga roket menuju bulan.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="meme-card rounded-3xl p-8">
+                    <div class="w-14 h-14 rounded-2xl bg-neon-pink/20 text-neon-pink flex items-center justify-center text-3xl mb-6 border border-neon-pink/40">
+                        🤝
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-3 text-white">100% Milik Komunitas</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        LP dibakar di matahari, kontrak di-renounce ke luar angkasa. Tidak ada dev yang bisa kabur karena astronotnya lupa bawa parasut.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINI INTERACTIVE WIDGET: DETEKTOR SINYAL CUAN ASTRARO -->
+        <section id="sinyal-game" class="py-16 bg-space-900/60 border-y border-white/10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+                <div class="meme-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+                    <span class="px-3 py-1 rounded-full bg-neon-pink text-white text-xs font-bold uppercase tracking-wider">
+                        Mini-Game Interaktif
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 mb-2">
+                        Radar Sinyal Cuan Astraro 📡
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base mb-8">
+                        Arahkan parabola satelitmu dan cek seberapa kuat sinyal cuan hari ini!
+                    </p>
+
+                    <!-- Visual Bar Sinyal -->
+                    <div class="flex items-end justify-center gap-3 h-32 mb-6">
+                        <div id="bar-1" class="w-6 sm:w-8 h-8 bg-slate-700 rounded-t-lg transition-all duration-300"></div>
+                        <div id="bar-2" class="w-6 sm:w-8 h-14 bg-slate-700 rounded-t-lg transition-all duration-300"></div>
+                        <div id="bar-3" class="w-6 sm:w-8 h-20 bg-slate-700 rounded-t-lg transition-all duration-300"></div>
+                        <div id="bar-4" class="w-6 sm:w-8 h-26 bg-slate-700 rounded-t-lg transition-all duration-300"></div>
+                        <div id="bar-5" class="w-6 sm:w-8 h-32 bg-slate-700 rounded-t-lg transition-all duration-300"></div>
+                    </div>
+
+                    <div id="radar-result" class="min-h-[60px] flex items-center justify-center mb-6">
+                        <p class="text-neon-cyan font-display text-lg sm:text-xl font-semibold">
+                            Tekan tombol di bawah untuk memindai orbit!
+                        </p>
+                    </div>
+
+                    <button onclick="scanSignal(event)" class="px-8 py-4 bg-gradient-to-r from-neon-purple to-neon-pink text-white font-display font-bold text-lg rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer">
+                        PINDAI SINYAL SEKARANG 🛰️
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOKENOMICS SECTION -->
+        <section id="tokenomics" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4">
+                    Astro-<span class="text-neon-yellow">Nomics</span>
+                </h2>
+                <p class="text-slate-300">
+                    Matematika sederhana yang bahkan alien pun langsung paham.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="meme-card rounded-3xl p-6 text-center">
+                    <div class="text-4xl mb-3">🪙</div>
+                    <div class="text-slate-400 text-xs uppercase font-bold mb-1">Total Supply</div>
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-neon-cyan">1,000,000,000</div>
+                    <div class="text-xs text-slate-400 mt-1">1 Miliar $ASTRO</div>
+                </div>
+
+                <div class="meme-card rounded-3xl p-6 text-center">
+                    <div class="text-4xl mb-3">🔥</div>
+                    <div class="text-slate-400 text-xs uppercase font-bold mb-1">Liquidity Pool</div>
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-neon-pink">100% BURNED</div>
+                    <div class="text-xs text-slate-400 mt-1">Dibakar di Inti Matahari</div>
+                </div>
+
+                <div class="meme-card rounded-3xl p-6 text-center">
+                    <div class="text-4xl mb-3">💸</div>
+                    <div class="text-slate-400 text-xs uppercase font-bold mb-1">Pajak Beli / Jual</div>
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-neon-yellow">0% / 0%</div>
+                    <div class="text-xs text-slate-400 mt-1">Gratis Biaya Parkir Orbit</div>
+                </div>
+
+                <div class="meme-card rounded-3xl p-6 text-center">
+                    <div class="text-4xl mb-3">📶</div>
+                    <div class="text-slate-400 text-xs uppercase font-bold mb-1">Kecepatan WiFi</div>
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-white">69 Gbps</div>
+                    <div class="text-xs text-slate-400 mt-1">Anti Delay Pas Pump</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROADMAP SECTION -->
+        <section id="roadmap" class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4">
+                    Peta Orbit <span class="text-neon-pink">Astraro</span>
+                </h2>
+                <p class="text-slate-300">Rencana perjalanan satelit kami menuju galaksi sebelah.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Phase 1 -->
+                <div class="meme-card rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="w-16 h-16 rounded-2xl bg-neon-cyan text-space-950 font-display font-bold text-2xl flex items-center justify-center shrink-0">
+                        01
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="font-display text-2xl font-bold text-white">Fase 1: Peluncuran Roket Kardus</h3>
+                            <span class="px-2.5 py-0.5 rounded-full bg-neon-cyan/20 text-neon-cyan text-xs font-bold">SELESAI</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">
+                            Pembuatan website Astraro, peluncuran token $ASTRO, dan menyambungkan WiFi gratis untuk 1.000 holder pertama.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="meme-card rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="w-16 h-16 rounded-2xl bg-neon-yellow text-space-950 font-display font-bold text-2xl flex items-center justify-center shrink-0">
+                        02
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="font-display text-2xl font-bold text-white">Fase 2: Trending di Galaksi</h3>
+                            <span class="px-2.5 py-0.5 rounded-full bg-neon-yellow/20 text-neon-yellow text-xs font-bold">ON PROGRESS</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">
+                            Listing CoinGecko & CMC, perang meme di X (Twitter), dan mengirim stiker Astraro ke stasiun luar angkasa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="meme-card rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="w-16 h-16 rounded-2xl bg-neon-pink text-white font-display font-bold text-2xl flex items-center justify-center shrink-0">
+                        03
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="font-display text-2xl font-bold text-white">Fase 3: Pasang Router di Mars</h3>
+                            <span class="px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300 text-xs font-bold">SEGERA</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">
+                            100.000+ Holders, Listing CEX Tier-1, dan membeli satelit beneran untuk menayangkan logo Astraro dari langit!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARA BELI SECTION -->
+        <section id="beli" class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-space-800 to-space-900 border-2 border-neon-cyan/40 rounded-3xl p-8 sm:p-12 text-center shadow-2xl">
+                <h2 class="font-display text-3xl sm:text-5xl font-bold mb-4">
+                    Cara Serok <span class="text-neon-cyan">$ASTRO</span>
+                </h2>
+                <p class="text-slate-300 max-w-2xl mx-auto mb-10">
+                    Ikuti 3 langkah gampang ini sebelum roketnya berangkat tanpa kamu!
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-10">
+                    <div class="bg-space-950/70 p-6 rounded-2xl border border-white/10">
+                        <div class="text-neon-cyan font-display font-bold text-xl mb-2">1. Siapkan Dompet</div>
+                        <p class="text-slate-400 text-sm">Download Phantom atau Solflare Wallet di HP atau browser kesayanganmu.</p>
+                    </div>
+                    <div class="bg-space-950/70 p-6 rounded-2xl border border-white/10">
+                        <div class="text-neon-yellow font-display font-bold text-xl mb-2">2. Isi Bahan Bakar SOL</div>
+                        <p class="text-slate-400 text-sm">Beli SOL di exchange favoritmu dan kirim ke alamat wallet kamu.</p>
+                    </div>
+                    <div class="bg-space-950/70 p-6 rounded-2xl border border-white/10">
+                        <div class="text-neon-pink font-display font-bold text-xl mb-2">3. Swap ke $ASTRO</div>
+                        <p class="text-slate-400 text-sm">Buka Raydium atau Jupiter, tempel Contract Address Astraro, dan klik Swap!</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="triggerBtnEffect(event, 'coin'); showToast('Membuka simulasi DEX Raydium untuk $ASTRO! 🚀')" class="px-8 py-4 bg-neon-cyan text-space-950 font-display font-bold text-lg rounded-2xl btn-astro hover:bg-white cursor-pointer">
+                        Swap di Raydium ⚡
+                    </button>
+                    <button onclick="triggerBtnEffect(event, 'beep'); showToast('Membuka grafik DexScreener $ASTRO! 📈')" class="px-8 py-4 bg-space-950 text-white border-2 border-neon-purple font-display font-bold text-lg rounded-2xl hover:bg-neon-purple/20 transition-colors cursor-pointer">
+                        Lihat Chart 📊
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-white/10 py-12 bg-space-950 text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="text-2xl">🛰️</span>
+                    <span class="font-display font-bold text-2xl text-white">ASTRARO ($ASTRO)</span>
+                </div>
+                <div class="flex justify-center gap-6 mb-6 text-xl text-slate-400">
+                    <a href="#" onclick="event.preventDefault(); showToast('Menuju Twitter / X Resmi Astraro!')" class="hover:text-neon-cyan transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" onclick="event.preventDefault(); showToast('Menuju Grup Telegram Komunitas Astraro!')" class="hover:text-neon-cyan transition-colors"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" onclick="event.preventDefault(); showToast('Menuju Discord Astraro!')" class="hover:text-neon-cyan transition-colors"><i class="fa-brands fa-discord"></i></a>
+                </div>
+                <p class="text-slate-500 text-xs leading-relaxed max-w-2xl mx-auto">
+                    DISCLAIMER: $ASTRO (Astraro) adalah koin meme yang dibuat murni untuk hiburan dan parodi bertema satelit luar angkasa. Tidak ada nilai intrinsik atau jaminan keuntungan finansial. Selalu DYOR (Do Your Own Research) dan jangan gunakan uang beras untuk membeli tiket ke Mars!
+                </p>
+                <p class="text-slate-600 text-xs mt-4">
+                    © 2026 ASTRARO GALACTIC MEME CORP. All Signals Reserved.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- CUSTOM NOTIFICATION TOAST (Pengganti alert()) -->
+    <div id="toast-box" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-space-800 border-2 border-neon-cyan text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
+            <span class="text-xl">🛰️</span>
+            <span id="toast-message" class="font-medium text-sm">Pesan notifikasi</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTERAKTIF -->
+    <script>
+        // ==========================================
+        // 0. ENGINE SUARA (TONE.JS) & ANIMASI KLIK TOMBOL
+        // ==========================================
+        let isMuted = false;
+        let audioReady = false;
+        let memeSynth = null;
+        let rocketNoise = null;
+
+        // Inisialisasi synthesizer dengan pengecekan aman agar tidak error saat load
+        function initAudioSynths() {
+            if (typeof Tone === 'undefined') return;
+            if (!memeSynth) {
+                memeSynth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.01, decay: 0.15, sustain: 0.05, release: 0.2 }
+                }).toDestination();
+            }
+            if (!rocketNoise) {
+                rocketNoise = new Tone.NoiseSynth({
+                    noise: { type: "pink" },
+                    envelope: { attack: 0.05, decay: 0.4, sustain: 0, release: 0.3 }
+                }).toDestination();
+                rocketNoise.volume.value = -12;
+            }
+        }
+
+        async function ensureAudio() {
+            if (typeof Tone !== 'undefined') {
+                initAudioSynths();
+                if (!audioReady) {
+                    await Tone.start();
+                    audioReady = true;
+                }
+            }
+        }
+
+        function toggleSound(e) {
+            isMuted = !isMuted;
+            const icon = document.getElementById('sound-icon');
+            if (isMuted) {
+                icon.className = 'fa-solid fa-volume-xmark text-neon-pink';
+                showToast('Suara efek dimatikan 🔇');
+            } else {
+                icon.className = 'fa-solid fa-volume-high text-neon-yellow';
+                playSoundEffect('beep');
+                spawnClickAnimation(e);
+                showToast('Suara efek diaktifkan 🔊');
+            }
+        }
+
+        async function playSoundEffect(type = 'beep') {
+            if (isMuted || typeof Tone === 'undefined') return;
+            try {
+                await ensureAudio();
+                if (!memeSynth || !rocketNoise) return;
+                const now = Tone.now();
+                if (type === 'launch') {
+                    // Suara roket meluncur naik + nada sukses
+                    rocketNoise.triggerAttackRelease("0.5", now);
+                    memeSynth.triggerAttackRelease(["C4", "E4", "G4", "C5"], "16n", now);
+                    memeSynth.triggerAttackRelease(["E5", "G5"], "8n", now + 0.15);
+                } else if (type === 'coin') {
+                    // Suara koin meme klasik (B5 -> E6)
+                    memeSynth.triggerAttackRelease("B5", "32n", now);
+                    memeSynth.triggerAttackRelease("E6", "16n", now + 0.07);
+                } else if (type === 'poke') {
+                    // Suara boing satelit lucu
+                    memeSynth.triggerAttackRelease("G4", "32n", now);
+                    memeSynth.triggerAttackRelease("D5", "32n", now + 0.05);
+                    memeSynth.triggerAttackRelease("A5", "16n", now + 0.1);
+                } else if (type === 'radar') {
+                    // Suara pemindai radar sonar
+                    memeSynth.triggerAttackRelease("A4", "32n", now);
+                    memeSynth.triggerAttackRelease("E5", "32n", now + 0.12);
+                    memeSynth.triggerAttackRelease("A5", "16n", now + 0.24);
+                } else if (type === 'laser') {
+                    // Suara laser futuristik
+                    memeSynth.triggerAttackRelease("C6", "32n", now);
+                    memeSynth.triggerAttackRelease("G5", "32n", now + 0.04);
+                    memeSynth.triggerAttackRelease("C5", "16n", now + 0.08);
+                } else {
+                    // Default beep lucu
+                    memeSynth.triggerAttackRelease("E5", "32n", now);
+                }
+            } catch (err) {
+                console.warn("Audio context menunggu interaksi:", err);
+            }
+        }
+
+        // Animasi percikan emoji & gelombang lingkaran di posisi klik
+        function spawnClickAnimation(e) {
+            let x = window.innerWidth / 2;
+            let y = window.innerHeight / 2;
+
+            if (e && e.clientX && e.clientY) {
+                x = e.clientX;
+                y = e.clientY;
+            } else if (e && e.currentTarget) {
+                const rect = e.currentTarget.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+            }
+
+            // 1. Efek Gelombang Radar (Ripple)
+            const ripple = document.createElement('div');
+            ripple.className = 'click-ripple';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 550);
+
+            // 2. Percikan Partikel Meme Luar Angkasa
+            const emojis = ['🛰️', '🚀', '⚡', '💸', '✨', '📡'];
+            const count = 6;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'click-particle';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.4);
+                const dist = 55 + Math.random() * 45;
+                const tx = Math.cos(angle) * dist;
+                const ty = Math.sin(angle) * dist;
+                const rot = (Math.random() - 0.5) * 180;
+
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                particle.style.setProperty('--rot', `${rot}deg`);
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+
+        function triggerBtnEffect(e, soundType = 'beep') {
+            playSoundEffect(soundType);
+            spawnClickAnimation(e);
+        }
+
+        // Pasang efek suara & animasi otomatis pada semua tombol yang belum memiliki handler khusus
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button, a[href^="#"]').forEach(el => {
+                if (!el.getAttribute('onclick')) {
+                    el.addEventListener('click', (e) => {
+                        triggerBtnEffect(e, 'beep');
+                    });
+                }
+            });
+        });
+
+        // ==========================================
+        // 1. LOGIKA ANIMASI INTRO SATELIT ASTRARO
+        // ==========================================
+        const introOverlay = document.getElementById('intro-overlay');
+        const signalBar = document.getElementById('signal-bar');
+        const signalStatus = document.getElementById('signal-status');
+        const introSpeech = document.getElementById('intro-speech');
+
+        const loadingMessages = [
+            { pct: 25, text: "Menghubungkan ke Orbit Low-Budget... 25%", speech: "Sabar ya, antrian sinyal di Mars lagi macet! 🛸" },
+            { pct: 55, text: "Mencuri WiFi Stasiun Luar Angkasa... 55%", speech: "Asik! Dapat password WiFi alien: 'astraro123' 📶" },
+            { pct: 85, text: "Mengkalibrasi Antena Cuan... 85%", speech: "Sinyal hijau terdeteksi! Bersiap meluncur! 🚀" },
+            { pct: 100, text: "SINYAL FULL BAR 100%! SIAP TERBANG!", speech: "BEEP BOOP! ASTRARO ONLINE! 🛰️💎" }
+        ];
+
+        let step = 0;
+        let introInterval;
+
+        function runIntroAnimation() {
+            step = 0;
+            signalBar.style.width = '10%';
+            signalStatus.textContent = "Menghubungkan ke Orbit Low-Budget... 10%";
+            introSpeech.textContent = "Beep Boop! Mencari sinyal cuan dari Mars... 📡💸";
+
+            clearInterval(introInterval);
+            introInterval = setInterval(() => {
+                if (step < loadingMessages.length) {
+                    const current = loadingMessages[step];
+                    signalBar.style.width = current.pct + '%';
+                    signalStatus.textContent = current.text;
+                    introSpeech.textContent = current.speech;
+                    step++;
+                } else {
+                    clearInterval(introInterval);
+                }
+            }, 950);
+        }
+
+        // Jalankan animasi progress saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            runIntroAnimation();
+        });
+
+        // Fungsi menutup layar intro dan masuk ke website
+        function enterWebsite(e) {
+            triggerBtnEffect(e, 'launch');
+            introOverlay.classList.add('intro-exit');
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+            }, 800);
+        }
+
+        // Fungsi memutar ulang animasi intro dari navbar
+        function replayIntro(e) {
+            triggerBtnEffect(e, 'laser');
+            introOverlay.style.display = 'flex';
+            // Sedikit delay agar transisi CSS reset dengan mulus
+            setTimeout(() => {
+                introOverlay.classList.remove('intro-exit');
+                runIntroAnimation();
+            }, 20);
+        }
+
+        // ==========================================
+        // 2. INTERAKSI MASKOT HERO (POKE ASTRARO)
+        // ==========================================
+        const heroQuotes = [
+            "Wih! Sinyal nambah +500 Mbps! 🚀",
+            "Jangan dijual dulu, roket baru dipanasin! 🔥",
+            "Beep Boop! Kamu calon sultan Mars! 👽💸",
+            "Awas kesetrum panel surya, bro! ⚡",
+            "HODL terus sampai ke galaksi Andromeda! 🌌"
+        ];
+        let quoteIdx = 0;
+
+        function pokeAstraro(e) {
+            triggerBtnEffect(e, 'poke');
+            const bubble = document.getElementById('hero-bubble');
+            const satVisual = document.getElementById('hero-sat-visual');
+
+            bubble.textContent = heroQuotes[quoteIdx];
+            quoteIdx = (quoteIdx + 1) % heroQuotes.length;
+            
+            // Animasi goyang pada karakter satelit
+            satVisual.classList.remove('animate-sat-poke');
+            void satVisual.offsetWidth; // trigger reflow
+            satVisual.classList.add('animate-sat-poke');
+
+            // Efek membesar sesaat pada balon teks
+            bubble.classList.add('scale-110', 'bg-neon-cyan');
+            bubble.classList.remove('bg-neon-yellow');
+            setTimeout(() => {
+                bubble.classList.remove('scale-110', 'bg-neon-cyan');
+                bubble.classList.add('bg-neon-yellow');
+            }, 300);
+        }
+
+        // ==========================================
+        // 3. RADAR SINYAL CUAN (MINI GAME)
+        // ==========================================
+        function scanSignal(e) {
+            triggerBtnEffect(e, 'radar');
+            const bars = [
+                document.getElementById('bar-1'),
+                document.getElementById('bar-2'),
+                document.getElementById('bar-3'),
+                document.getElementById('bar-4'),
+                document.getElementById('bar-5')
+            ];
+            const resultBox = document.getElementById('radar-result');
+
+            // Reset warna bar
+            bars.forEach(b => {
+                b.className = b.className.replace(/bg-neon-\w+/g, 'bg-slate-700');
+            });
+
+            resultBox.innerHTML = `<p class="text-slate-300 animate-pulse">Memutar parabola satelit... 📡</p>`;
+
+            setTimeout(() => {
+                const level = Math.floor(Math.random() * 5) + 1; // 1 sampai 5
+                const colors = ['bg-neon-pink', 'bg-neon-yellow', 'bg-neon-cyan', 'bg-neon-cyan', 'bg-neon-cyan'];
+                const messages = [
+                    "1 Bar: Sinyal ketutup awan mendung, waktunya serok bawah! 🌧️",
+                    "2 Bar: Lumayan buat beli kuota ketengan! 📱",
+                    "3 Bar: Sinyal stabil! Candle hijau mulai bermunculan! 📈",
+                    "4 Bar: Kenceng banget! Roket siap lepas landas! 🚀",
+                    "5 BAR FULL GALAKSI! WAKTUNYA TO THE MARS! 🛸💎🔥"
+                ];
+
+                for (let i = 0; i < level; i++) {
+                    bars[i].classList.remove('bg-slate-700');
+                    bars[i].classList.add(colors[level - 1]);
+                }
+
+                if (level >= 4) {
+                    playSoundEffect('coin');
+                }
+
+                resultBox.innerHTML = `<p class="font-display text-lg sm:text-xl font-bold text-neon-yellow">${messages[level - 1]}</p>`;
+            }, 600);
+        }
+
+        // ==========================================
+        // 4. SALIN CONTRACT ADDRESS & TOAST NOTIFICATION
+        // ==========================================
+        function copyCA(e) {
+            triggerBtnEffect(e, 'coin');
+            const caText = document.getElementById('ca-text').innerText.trim();
+            const tempInput = document.createElement('input');
+            tempInput.value = caText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const btnText = document.getElementById('copy-btn-text');
+            btnText.textContent = "Tersalin!";
+            showToast("Contract Address $ASTRO berhasil disalin! 📋");
+
+            setTimeout(() => {
+                btnText.textContent = "Salin CA";
+            }, 2000);
+        }
+
+        let toastTimeout;
+        function showToast(msg) {
+            const toastBox = document.getElementById('toast-box');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.textContent = msg;
+            toastBox.classList.remove('translate-y-24', 'opacity-0');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toastBox.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
